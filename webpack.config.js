@@ -3,17 +3,22 @@
  */
 
 var webpack = require('webpack');
-
+var path = require('path');
+var srcPath = path.resolve(__dirname + '/src');
 
 module.exports = {
-    entry: './main.js',
+    context: srcPath,
+    resolve: {
+        root: srcPath
+    },
+    entry: 'main.js',
     output: {
-        path: './',
+        path: './dist',
         filename: 'index.js'
     },
     devServer: {
         inline: true,
-        port: 333
+        port: 3333
     },
     module: {
         loaders: [
@@ -22,7 +27,7 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel',
                 query: {
-                    preset: ['es2015', 'react']
+                    presets: ['es2015', 'react']
                 }
             }
         ]
