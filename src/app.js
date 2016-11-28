@@ -202,11 +202,11 @@ const Widget = (props) => {
 // };
 
 ReactDOM.render(
-    <App2 cat={5}/>,
+    <App/>,
     /*<App txt="this is the props text" cat={5}/>,*/
     document.getElementById('app')
 );
 // const App = () => <h1> Hello EggHead </h1>;
 //
 
-export default App2;
+export default App;

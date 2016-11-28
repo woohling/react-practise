@@ -11,7 +11,7 @@ module.exports = {
     resolve: {
         root: srcPath
     },
-    entry: 'index.js',
+    entry: 'main.js',
     output: {
         path: './dist',
         filename: 'bundle.js'
