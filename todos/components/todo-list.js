@@ -8,9 +8,9 @@ import _ from 'lodash';
 
 export default class TodoList extends React.Component {
     renderItems() {
+        const props = _.omit(this.props, 'todos');
         return _.map(this.props.todos, (todo, index) => {
-            console.log(todo);
-            return <TodoListItem key={index} {...todo} />;
+            return <TodoListItem key={index} {...todo} {...props}/>;
         });
         // task = {todo.task} isCompleted = {todo.completed}
     }
