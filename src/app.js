@@ -1,6 +1,65 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+let Mixin = InnerComponent => class extends React.Component {
+    constructor() {
+        super();
+        // this.state = {val: 0};
+        // this.state = {
+        //     red: 0,
+        //     green: 0,
+        //     blue: 0
+        // };
+        this.state = {increasing: false};
+        this.update = this.update.bind(this);
+    }
+
+    update(e) {
+        this.setState({val: this.state.val + 1});
+        // ReactDOM.render(
+        //     <App val={this.props.val + 1} />,
+        //     document.getElementById('app')
+        // );
+        // this.setState({val : this.state.val + 1});
+        // this.setState({
+        //     red: ReactDOM.findDOMNode(this.refs.red).value,
+        //     blue: ReactDOM.findDOMNode(this.refs.blue).value,
+        //     green: ReactDOM.findDOMNode(this.refs.green).value
+        // })
+    }
+
+    componentWillMount() {
+        console.log('will mount');
+    }
+
+    render () {
+        return <InnerComponent update={this.update}
+                               {...this.state}
+                               {...this.props}/>
+    }
+
+    componentDidMount() {
+        console.log('mounted');
+    }
+
+};
+
+const Button = (props) => <button onClick={props.update}>{props.txt} - {props.val}</button>;
+
+let ButtonMixed = Mixin(Button);
+
+class App2 extends React.Component {
+   render () {
+       return (<div>
+           <ButtonMixed txt="button" val="0"/>
+       </div>);
+   }
+}
+
+App2.defaultProps = {
+    val: 0
+};
+
 class App extends React.Component {
     constructor() {
         super();
@@ -31,9 +90,9 @@ class App extends React.Component {
         this.setState({increasing: nextProps.val > this.props.val})
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.val % 5 === 0;
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     return nextProps.val % 5 === 0;
+    // }
 
     componentWillMount() {
         console.log('mounting');
@@ -52,7 +111,7 @@ class App extends React.Component {
 
     render() {
         console.log(this.state.increasing);
-        return <button onClick={this.update}>{this.props.val}</button>;
+        return <button onClick={this.update}>button - {this.props.val}</button>;
         /*return <button onClick={this.update}>{this.state.val * this.state.m}</button>;*/
         //return <Button> I <Heart></Heart> React</Button>;
         // return (
@@ -108,11 +167,11 @@ App.defaultProps = {
 //     }
 // }
 
-class Button extends React.Component {
-    render() {
-        return <button>{this.props.children}</button>
-    }
-}
+// class Button extends React.Component {
+//     render() {
+//         return <button>{this.props.children}</button>
+//     }
+// }
 
 const Heart = () => <span className="glyphicon glyphicon-heart"></span>
 
@@ -143,11 +202,11 @@ const Widget = (props) => {
 // };
 
 ReactDOM.render(
-    <App cat={5}/>,
+    <App2 cat={5}/>,
     /*<App txt="this is the props text" cat={5}/>,*/
     document.getElementById('app')
 );
 // const App = () => <h1> Hello EggHead </h1>;
 //
 
-export default App;
+export default App2;
