@@ -4,17 +4,17 @@
 
 var webpack = require('webpack');
 var path = require('path');
-var srcPath = path.resolve(__dirname + '/src');
+var srcPath = path.resolve(__dirname + '/todos');
 
 module.exports = {
     context: srcPath,
     resolve: {
         root: srcPath
     },
-    entry: 'main.js',
+    entry: 'index.js',
     output: {
         path: './dist',
-        filename: 'index.js'
+        filename: 'bundle.js'
     },
     devServer: {
         inline: true,
