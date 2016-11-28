@@ -3,7 +3,8 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TodoList from './todo.list';
+import TodoList from './todo-list';
+import CreateTodo from './create-todo';
 
 const todos = [
     {
@@ -16,39 +17,27 @@ const todos = [
     }
 ];
 
+
 class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {increasing: false};
-        this.update = this.update.bind(this);
+    constructor(props) {
+        super(props);
+        this.state = {
+            todos
+        }
     }
 
-    update(e) {
-
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({increasing: nextProps.val > this.props.val})
-    }
-
-    componentWillMount() {
-        console.log('mounting');
-        this.setState({m: 2});
-    }
-
-    componentDidMount() {
-        console.log('mounted');
-    }
-
-    componentWillUnmount() {
-        console.log('bye');
-    }
-    render() {
-        return <button>Button</button>;
+    render () {
+        return (<div>
+            <h1>Todo App</h1>
+            <CreateTodo/>
+            <TodoList todos={this.state.todos}/>
+        </div>);
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(
+    <App />,
+    document.getElementById('app')
+);
 
 export default App;
-
