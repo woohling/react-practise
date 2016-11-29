@@ -64,8 +64,7 @@ export default class TodoListItem extends React.Component {
 
         return (
             <td style={taskStyle}
-                onClick={this.props.toggleTask.bind(this, task)}
-            >
+                onClick={this.props.toggleTask.bind(this, task)}>
                 {task}
             </td>
         );
