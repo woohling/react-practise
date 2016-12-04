@@ -4,7 +4,7 @@
 
 var webpack = require('webpack');
 var path = require('path');
-var srcPath = path.resolve(__dirname + '/todos');
+var srcPath = path.resolve(__dirname + '/thinking');
 
 module.exports = {
     context: srcPath,
