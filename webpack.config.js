@@ -4,14 +4,21 @@
 
 var webpack = require('webpack');
 var path = require('path');
-var srcPath = path.resolve(__dirname + '/thinking');
+var srcPath = path.resolve(__dirname + '/ownRedux');
+// var srcPath = path.resolve(__dirname + '/testJqueryPlugin');
+var plugins = [
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+    })
+];
 
 module.exports = {
     context: srcPath,
     resolve: {
         root: srcPath
     },
-    entry: 'main.js',
+    entry: 'index.js',
     output: {
         path: './dist',
         filename: 'index.js'
@@ -20,6 +27,7 @@ module.exports = {
         inline: true,
         port: 3333
     },
+    plugins: plugins,
     module: {
         loaders: [
             {
@@ -29,7 +37,15 @@ module.exports = {
                 query: {
                     presets: ['es2015', 'react']
                 }
-            }
+            },
+            {
+                test: /\.css/,
+                loader: 'css'
+            },
+            {
+                test: /.*\.(gif|png|jpe?g|svg)$/i,
+                loader: 'url?name=images/[name].[ext]&limit=30000' //30KB
+            },
         ]
     }
 };
