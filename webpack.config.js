@@ -4,7 +4,7 @@
 
 var webpack = require('webpack');
 var path = require('path');
-var srcPath = path.resolve(__dirname + '/ownReduxWithRouter');
+var srcPath = path.resolve(__dirname + '/reddit');
 // var srcPath = path.resolve(__dirname + '/testJqueryPlugin');
 // var plugins = [
 //     new webpack.ProvidePlugin({
