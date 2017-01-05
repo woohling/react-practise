@@ -4,14 +4,14 @@
 
 var webpack = require('webpack');
 var path = require('path');
-var srcPath = path.resolve(__dirname + '/ownRedux');
+var srcPath = path.resolve(__dirname + '/ownReduxWithRouter');
 // var srcPath = path.resolve(__dirname + '/testJqueryPlugin');
-var plugins = [
-    new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-    })
-];
+// var plugins = [
+//     new webpack.ProvidePlugin({
+//         $: "jquery",
+//         jQuery: "jquery",
+//     })
+// ];
 
 module.exports = {
     context: srcPath,
@@ -25,9 +25,9 @@ module.exports = {
     },
     devServer: {
         inline: true,
+        historyApiFallback: true,
         port: 3333
     },
-    plugins: plugins,
     module: {
         loaders: [
             {
